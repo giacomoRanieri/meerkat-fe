@@ -10,3 +10,13 @@ $red-light: #f8d8d8;
 $dark: #1e1e1e;
 $dark-light: #5F6368;
 $light-gray: #f0f0f0;
+
+//font family
+@font-face {
+  font-family: 'devfest-font';
+  src: url('../assets/font/GoogleSans-Regular-v1.27.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-family-df: 'devfest-font', sans-serif;
