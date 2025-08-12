@@ -47,7 +47,7 @@ jobs:
     steps:
       # Step 0: Pre Check out the repository's code.
       - name: Checkout repository
-        id: checkout
+        id: precheckout
         uses: actions/checkout@v4
         with:
           # `fetch-depth: 0` is required to fetch all history and tags.
