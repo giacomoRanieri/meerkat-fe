@@ -45,7 +45,13 @@ jobs:
       id-token: 'write'
 
     steps:
-
+      # Step 0: Pre Check out the repository's code.
+      - name: Checkout repository
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          # `fetch-depth: 0` is required to fetch all history and tags.
+          fetch-depth: 0
 
       # Step 1: Setup di Node.js
       - name: Set up Node.js
@@ -62,7 +68,7 @@ jobs:
           # Use the version provided in the manual input.
           VERSION="${{ github.event.inputs.version }}"
           echo "Using provided version: $VERSION"
-          if git ls-remote --tags ${{github.repositoryUrl}} | grep "refs/tags/$VERSION"; then
+          if git ls-remote --tags | grep "refs/tags/$VERSION"; then
             # Set the determined version as an environment variable for subsequent steps.
             echo "deploy_version=${VERSION#v}" >> $GITHUB_OUTPUT
             echo "deploy_id=${COMMIT_ID}" >> $GITHUB_OUTPUT
