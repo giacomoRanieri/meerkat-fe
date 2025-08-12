@@ -1,7 +1,7 @@
 # .github/workflows/deploy-to-app-hosting.yml
 
 # Name of the workflow, which will be displayed in the GitHub Actions UI.
-name: Build and Deploy to Cloud Run (PROD)
+name: Build and Deploy App Hosting
 
 # Controls when the workflow will run.
 on:
