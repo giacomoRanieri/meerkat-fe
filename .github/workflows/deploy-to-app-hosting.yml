@@ -119,7 +119,7 @@ jobs:
         uses: 'w9jds/firebase-action@master'
         with:
           args: apphosting:rollouts:create ${{ env.SERVICE_NAME }} --git_commit ${{ steps.get_version.outputs.deploy_id }}
-          appId: TUO_APP_ID # <-- SOSTITUISCI con il tuo App ID di App Hosting
+          PROJECT_ID: ${{ env.PROJECT_ID }}
 
       # Step 9: Output the URL of the deployed service.
       - name: Show Deployed URL
