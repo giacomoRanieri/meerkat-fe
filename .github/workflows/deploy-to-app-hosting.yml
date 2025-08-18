@@ -118,7 +118,7 @@ jobs:
       - name: Deploy to App Hosting live channel
         uses: 'w9jds/firebase-action@master'
         with:
-          args: apphosting:rollouts:create ${{ env.SERVICE_NAME }} --git_commit ${{ steps.get_version.outputs.deploy_id }}
+          args: apphosting:rollouts:create ${{ env.SERVICE_NAME }} --git-commit ${{ steps.get_version.outputs.deploy_id }}
           PROJECT_ID: ${{ env.PROJECT_ID }}
 
       # Step 9: Output the URL of the deployed service.
