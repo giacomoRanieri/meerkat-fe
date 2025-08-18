@@ -1,7 +1,7 @@
 # .github/workflows/deploy-to-app-hosting.yml
 
 # Name of the workflow, which will be displayed in the GitHub Actions UI.
-name: Build and Deploy App Hosting
+name: Build and Deploy to App Hosting (PROD)
 
 # Controls when the workflow will run.
 on:
@@ -114,8 +114,7 @@ jobs:
         run: npm run build
 
       # 6. Deploy sul canale 'live' di App Hosting
-      # Quando l'azione viene eseguita su un push a 'main', il deploy
-      # avviene automaticamente sul canale live.
+      # This step deploys the built application to the live channel of App Hosting.
       - name: Deploy to App Hosting live channel
         uses: 'w9jds/firebase-action@master'
         with:
