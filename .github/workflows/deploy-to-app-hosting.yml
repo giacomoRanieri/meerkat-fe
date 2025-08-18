@@ -70,6 +70,7 @@ jobs:
           echo "Using provided version: $VERSION"
           if git ls-remote --tags | grep "refs/tags/$VERSION"; then
             # Set the determined version as an environment variable for subsequent steps.
+            COMMIT_ID=$(git rev-list -n 1 "$VERSION")
             echo "deploy_version=${VERSION#v}" >> $GITHUB_OUTPUT
             echo "deploy_id=${COMMIT_ID}" >> $GITHUB_OUTPUT
           else
