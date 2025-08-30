@@ -77,7 +77,7 @@ jobs:
             echo "Tag '$VERSION' not found on repository."
             exit 1
           fi
-        
+
 
 
       # Step 3: Check out the repository's code.
@@ -117,7 +117,7 @@ jobs:
       # 6. Deploy sul canale 'live' di App Hosting
       # This step deploys the built application to the live channel of App Hosting.
       - name: Deploy to App Hosting live channel
-        uses: 'w9jds/firebase-action@master'
+        uses: 'w9jds/firebase-action@90c848b4861dbd006c5ae9e7f23614018f5bac3e' # v14.15.1
         with:
           args: apphosting:rollouts:create ${{ env.SERVICE_NAME }} --git-commit ${{ steps.get_version.outputs.deploy_id }}
           PROJECT_ID: ${{ env.PROJECT_ID }}
