@@ -70,6 +70,7 @@ jobs:
           echo "Using provided version: $VERSION"
           if git ls-remote --tags | grep "refs/tags/$VERSION"; then
             # Set the determined version as an environment variable for subsequent steps.
+            COMMIT_ID=$(git rev-list -n 1 "$VERSION")
             echo "deploy_version=${VERSION#v}" >> $GITHUB_OUTPUT
             echo "deploy_id=${COMMIT_ID}" >> $GITHUB_OUTPUT
           else
@@ -118,8 +119,8 @@ jobs:
       - name: Deploy to App Hosting live channel
         uses: 'w9jds/firebase-action@master'
         with:
-          args: apphosting:rollouts:create ${{ env.SERVICE_NAME }} --git_commit ${{ steps.get_version.outputs.deploy_id }}
-          appId: TUO_APP_ID # <-- SOSTITUISCI con il tuo App ID di App Hosting
+          args: apphosting:rollouts:create ${{ env.SERVICE_NAME }} --git-commit ${{ steps.get_version.outputs.deploy_id }}
+          PROJECT_ID: ${{ env.PROJECT_ID }}
 
       # Step 9: Output the URL of the deployed service.
       - name: Show Deployed URL
