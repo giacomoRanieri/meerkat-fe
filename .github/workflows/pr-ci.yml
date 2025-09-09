@@ -17,7 +17,7 @@ jobs:
     # Specifies the environment on which this job will run.
     # `ubuntu-latest` is a recent version of the Ubuntu operating system.
     runs-on: ubuntu-latest
-    
+
     steps:
       # Step 1: Checkout the repository's code
       - name: Checkout code
@@ -61,7 +61,7 @@ jobs:
           files: ./coverage/lcov.info
           # The `fail_ci_if_error` option ensures that the CI job fails if there is
           fail_ci_if_error: true
-      
+
       # Step 6: Run a security scan
       # This step checks for known vulnerabilities in the project's dependencies.
       - name: Run npm audit to check for vulnerabilities
@@ -69,25 +69,6 @@ jobs:
         # The `--audit-level=high` flag ensures that only vulnerabilities of high severity or
         # higher will cause the command to fail.
         run: npm audit --audit-level=high
-
-      # Step 7: SonarCloud analysis
-      # This step performs a static analysis of the code.
-      # It requires the SONAR_TOKEN, SONAR_PROJECT_KEY, and SONAR_ORGANIZATION secrets.
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5.3
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token generated from SonarCloud
-        with:
-          # Add the following values as environment variables or secrets
-          # in your GitHub repository to configure SonarCloud.
-          args: >
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.sources=src/
-            -Dsonar.tests=src/
-            -Dsonar.test.inclusions=**/*.spec.ts
-            -Dsonar.coverage.exclusions=**/*.spec.ts,src/main.ts,src/test.ts
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
 
       # Step 8: Build the Angular SSR application
       # This step verifies that the application compiles correctly after all checks.
